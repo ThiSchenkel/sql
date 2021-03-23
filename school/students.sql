@@ -1,3 +1,5 @@
+
+-- Students
 CREATE TABLE students
 (
     id INT,
@@ -20,7 +22,7 @@ id`,
 
 
 
-
+-- Languages
 CREATE TABLE languages
 (
     id INT,
@@ -41,7 +43,7 @@ id`,
 
 
 
-
+-- Favorites
 CREATE TABLE favorites
 (
     id INT,
@@ -65,7 +67,7 @@ id`,
 
 
 
-
+-- Students languages
 CREATE TABLE students_languages
 (
     id INT,
@@ -93,3 +95,39 @@ id`,
 ('12', '6', '1'),
 ('13', '6', '2'),
 ('14', '6', '3');
+
+
+-- ## Rapport lvl 1
+-- Faites les requêtes pour :
+
+-- 1. Récupérer toutes les colonnes de l’étudiant.e avec l’ID 3
+SELECT *
+FROM `students
+` WHERE id = 3
+
+-- 2. Récupérer toutes les colonnes l’étudiant.e avec l’ID 6
+SELECT *
+FROM `students
+` WHERE id = 6
+
+-- 3. Récupérer le nom et la ville de l’étudiant.e avec l’ID 1
+SELECT `name
+`, `city` FROM `students` WHERE id = 1
+
+-- 4. Récupérer le nom de l’étudiant.e avec l’ID 2
+SELECT `name
+` FROM `students` WHERE id = 2
+
+-- 5. Récupérer toutes les colonnes des étudiant.e.s de la ville de Paris
+SELECT *
+FROM `students
+` WHERE city = 'Paris'
+
+-- 6. Récupérer les noms des étudiant.es de la ville de Lyon
+SELECT *
+FROM `students
+` WHERE city = 'Lyon'
+
+
+
+
