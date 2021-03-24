@@ -124,9 +124,9 @@ FROM `students
 ` WHERE city = 'Paris'
 
 -- 6. Récupérer les noms des étudiant.es de la ville de Lyon
-SELECT *
-FROM `students
-` WHERE city = 'Lyon'
+SELECT name
+FROM students
+WHERE city = 'Lyon'
 
 
 
@@ -139,6 +139,8 @@ FROM students, favorites
 WHERE
 (students.id= favorites.student_id)
     AND students.id = 5
+-- select * from students students inner join favorites on students.id = favorites.student_id where students.id = 5
+
 
 -- 2. Pour l’étudiant.e d’ID 4, récupérer son nom et son sport préféré
 SELECT students.name, favorites.sport
@@ -146,6 +148,8 @@ FROM students, favorites
 WHERE
 (students.id = favorites.student_id)
     AND students.id = 4
+-- select name, sport  from students students  join favorites on students.id = favorites.student_id where students.id = 4
+
 
 -- 3. Pour l’étudiant.e d’ID 1, récupérer son nom et sa matière préférée
 SELECT students.name, favorites.class
@@ -153,6 +157,8 @@ FROM students, favorites
 WHERE
 (students.id= favorites.student_id)
     AND students.id = 1
+-- select name, class  from students join favorites on students.id = favorites.student_id where students.id = 1
+
 
 -- 4. Récupérer toutes les colonnes de l’étudiant.e qui aime la musique
 select students.name, students.city, favorites.class, favorites.sport, languages.name
@@ -161,12 +167,16 @@ where (students.id = students_languages.student_id)
     and (students.id = favorites.student_id)
     and (languages.id = students_languages.language_id)
     and favorites.class = 'music'
+-- select*  from students inner join favorites on students.id = favorites.student_id where favorites.class = "Music"
+
 
 -- 5. Récupérer le nom des étudiant.e.s qui aime le tennis
 select students.name, favorites.sport
 From students, favorites
 where students.id = favorites.student_id
     and favorites.sport = 'tennis'
+-- select name from students inner join favorites on students.id = favorites.student_id where favorites.sport = "Tennis"
+
 
 -- 6. Récupérer le nom des étudiant.e.s qui aime les matières artistiques
 select students.name, favorites.class
@@ -174,10 +184,12 @@ From students, favorites
 where students.id = favorites.student_id
     and favorites.class = 'Arts'
 
+
 -- 7. Récupérer le nombre d’étudiant.e.s de la ville de Paris
 select COUNT(students.city)
 From students
 WHERE students.city = "Paris"
+-- select COUNT(*) nbPoeple From students WHERE city = "Paris"
 
 
 
