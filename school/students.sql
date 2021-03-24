@@ -130,4 +130,53 @@ FROM `students
 
 
 
+-- ## Rapport lvl 2
+-- Faites les requêtes pour :
+
+-- 1. Pour l’étudiant.e d’ID 5, récupérer toutes les colonnes sur l’étudiant.e et ses activités favorites
+SELECT students.name, students.city, favorites.class, favorites.sport
+FROM students, favorites
+WHERE
+(students.id= favorites.student_id)
+    AND students.id = 5
+
+-- 2. Pour l’étudiant.e d’ID 4, récupérer son nom et son sport préféré
+SELECT students.name, favorites.sport
+FROM students, favorites
+WHERE
+(students.id = favorites.student_id)
+    AND students.id = 4
+
+-- 3. Pour l’étudiant.e d’ID 1, récupérer son nom et sa matière préférée
+SELECT students.name, favorites.class
+FROM students, favorites
+WHERE
+(students.id= favorites.student_id)
+    AND students.id = 1
+
+-- 4. Récupérer toutes les colonnes de l’étudiant.e qui aime la musique
+select students.name, students.city, favorites.class, favorites.sport, languages.name
+From students, favorites, languages, students_languages
+where (students.id = students_languages.student_id)
+    and (students.id = favorites.student_id)
+    and (languages.id = students_languages.language_id)
+    and favorites.class = 'music'
+
+-- 5. Récupérer le nom des étudiant.e.s qui aime le tennis
+select students.name, favorites.sport
+From students, favorites
+where students.id = favorites.student_id
+    and favorites.sport = 'tennis'
+
+-- 6. Récupérer le nom des étudiant.e.s qui aime les matières artistiques
+select students.name, favorites.class
+From students, favorites
+where students.id = favorites.student_id
+    and favorites.class = 'Arts'
+
+-- 7. Récupérer le nombre d’étudiant.e.s de la ville de Paris
+select COUNT(students.city)
+From students
+WHERE students.city = "Paris"
+
 
