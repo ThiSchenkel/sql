@@ -68,17 +68,21 @@ VALUES
 SELECT *
 FROM candidates
 
+
 -- **Select **count** candidates
 select count(*) candidates
 from candidates
 
+
 -- **Select candidates **younger** **than** 30 years old
--- (calcul de l'age de chaque candidats)
-select id, first_name, last_name, (DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(birthday)), '%Y')+0) AS age
+select *
 from candidates
+where (year(current_date) - year(birthday) - (right(current_date,5) < right(birthday,5))
+) < 30
 
 
 -- **Select candidates asking for **less** **than** 50K
+
 -- **Select candidates who have an **online** portfolio
 -- **Select candidates who have a github account
 -- **Select candidates who have an **online** portfolio **and** a github account
