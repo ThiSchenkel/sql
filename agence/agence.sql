@@ -4,7 +4,7 @@ first_name VARCHAR
 (50),
 last_name VARCHAR
 (50),
-birthday INT,
+birthday DATE,
 salary INT,
 portfolio TEXT,
 github TEXT)
@@ -12,9 +12,9 @@ github TEXT)
 INSERT  INTO candidates
     (first_name, last_name, birthday, salary, portfolio, github)
 VALUES
-    ('Marie', 'Chantal', 20000220, 2500, 'https://Portfolio/MarieChantalPortfolio', 'https://github.com/MarieChantal/'),
+    ('Marie', 'Chantal', 19850220, 2500, 'https://Portfolio/MarieChantalPortfolio', 'https://github.com/MarieChantal/'),
     ('Jean', 'Claude', 19980512, 2400, 'https://Portfolio/JeanClaudePortfolio', 'https://github.com/JeanClaude/'),
-    ('Tintin', 'EtMilou', 20161228, 1600, 'https://Portfolio/TintinEtMilouPortfolio', 'https://github.com/TintinEtMilou/'),
+    ('Tintin', 'EtMilou', 19991228, 1600, 'https://Portfolio/TintinEtMilouPortfolio', 'https://github.com/TintinEtMilou/'),
     ('Tournesol', 'Fleur', 20010724, 1950, 'https://Portfolio/TournesolFleurPortfolio', 'https://github.com/TournesolFleur/'),
     ('Captain', 'Haddock', 19950110, 3000, 'https://Portfolio/CaptainHaddockPortfolio', 'https://github.com/CaptainHaddock/');
 
@@ -62,3 +62,26 @@ VALUES
     ('Bootstrap', 5),
     ('Python', 3),
     ('MongoDB', 5);
+
+
+-- **Select all candidates
+SELECT *
+FROM candidates
+
+-- **Select **count** candidates
+select count(*) candidates
+from candidates
+
+-- **Select candidates **younger** **than** 30 years old
+-- (calcul de l'age de chaque candidats)
+select id, first_name, last_name, (DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(birthday)), '%Y')+0) AS age
+from candidates
+
+
+-- **Select candidates asking for **less** **than** 50K
+-- **Select candidates who have an **online** portfolio
+-- **Select candidates who have a github account
+-- **Select candidates who have an **online** portfolio **and** a github account
+-- **Select candidates who speak English
+-- **Select candidates who know React
+-- **Select candidates who know React **and** Express
