@@ -12,10 +12,10 @@ github TEXT)
 INSERT  INTO candidates
     (first_name, last_name, birthday, salary, portfolio, github)
 VALUES
-    ('Marie', 'Chantal', 19850220, 2500, 'https://Portfolio/MarieChantalPortfolio', 'https://github.com/MarieChantal/'),
+    ('Marie', 'Chantal', 19850220, 4500, 'https://Portfolio/MarieChantalPortfolio', 'https://github.com/MarieChantal/'),
     ('Jean', 'Claude', 19980512, 2400, 'https://Portfolio/JeanClaudePortfolio', 'https://github.com/JeanClaude/'),
-    ('Tintin', 'EtMilou', 19991228, 1600, 'https://Portfolio/TintinEtMilouPortfolio', 'https://github.com/TintinEtMilou/'),
-    ('Tournesol', 'Fleur', 20010724, 1950, 'https://Portfolio/TournesolFleurPortfolio', 'https://github.com/TournesolFleur/'),
+    ('Tintin', 'EtMilou', 19991228, 1600, null, 'https://github.com/TintinEtMilou/'),
+    ('Tournesol', 'Fleur', 20010724, 1950, 'https://Portfolio/TournesolFleurPortfolio', null),
     ('Captain', 'Haddock', 19950110, 3000, 'https://Portfolio/CaptainHaddockPortfolio', 'https://github.com/CaptainHaddock/');
 
 
@@ -55,8 +55,8 @@ INSERT  INTO programming
     (name, candidate_id)
 VALUES
     ('Javascript', 2),
-    ('React.js', 4),
-    ('C++', 1),
+    ('React.js', 1),
+    ('Express', 1),
     ('React Native', 3),
     ('HTML, CSS, JS', 2),
     ('Bootstrap', 5),
@@ -82,10 +82,36 @@ where (year(current_date) - year(birthday) - (right(current_date,5) < right(birt
 
 
 -- **Select candidates asking for **less** **than** 50K
+select *
+from candidates
+where (salary * 12) < 50000
 
 -- **Select candidates who have an **online** portfolio
--- **Select candidates who have a github account
+select first_name, portfolio
+from candidates
+where portfolio is not NULL
+
+-- **Select candidates who have a github
+select first_name, github
+from candidates
+where github is not NULL
+
 -- **Select candidates who have an **online** portfolio **and** a github account
+select first_name, github, portfolio
+from candidates
+where github = portfolio
+is not NULL
+
 -- **Select candidates who speak English
+select first_name, languages.name
+from candidates
+    inner join languages on candidates.id = candidate_id
+where name = 'English'
+
 -- **Select candidates who know React
+select first_name, programming.name
+from candidates
+    inner join programming on candidates.id = candidate_id
+where name = 'React.js'
+
 -- **Select candidates who know React **and** Express
