@@ -115,3 +115,7 @@ from candidates
 where name = 'React.js'
 
 -- **Select candidates who know React **and** Express
+select first_name, programming.name
+from candidates
+    inner join programming on candidates.id = candidate_id
+where name in  ('React.js', 'Express')
